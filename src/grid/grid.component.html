@@ -1,0 +1,30 @@
+<main class="main">
+    <div class="content">
+        <h1>imaron</h1>
+        <div class="row">
+            <div class="col-md-2"><input type="file" (change)="readExcelFileA($event)"></div>
+            <div class="float-left">
+                <span class="ela">
+                    <div class="spinner-border fileA" role="status" *ngIf="fileA.readFinish==false">
+                        <span class="sr-only">Loading...</span>
+                    </div>
+                </span>
+            </div>
+            <div class="col-md-2"><input type="file" (change)="readExcelFileB($event)"></div>
+            <div class="float-left">
+                <div class="spinner-border fileB" role="status" *ngIf="fileB.readFinish==false">
+                    <span class="sr-only">Loading...</span>
+                </div>
+            </div>
+        </div>
+        <button type="button" (click)="compare()">Compare</button>
+        <div class="row">
+            <div class="col-md-6">
+                <div id="myGridFileA" class="ag-theme-alpine test-grid"></div>
+            </div>
+            <div class="col-md-6">
+                <div id="myGridFileB" class="ag-theme-alpine test-grid"></div>
+            </div>
+        </div>
+    </div>
+</main>

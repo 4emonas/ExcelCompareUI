@@ -41,8 +41,8 @@ export interface Coords {
     imports: [RouterOutlet, HttpClientModule, MatProgressSpinnerModule, CommonModule, AgGridModule]
 })
 export class GridComponent implements OnInit {
-    constructor(private httpClient: HttpClient) { }
-
+    constructor(private httpClient: HttpClient) { 
+    }
     ngOnInit(): void {
         let gridFileA = document.querySelector<HTMLElement>("#myGridFileA")!;
         let gridFileB = document.querySelector<HTMLElement>("#myGridFileB")!;
@@ -51,7 +51,7 @@ export class GridComponent implements OnInit {
     }
 
     gridApiA: GridApi<any>;
-    gridApiB: GridApi<any>;
+    gridApiB: GridApi<any>; 
     SERVER_URL = "https://localhost:7079/";
     CompareApi = "Compare";
     fileA: File = { content: '', readFinish: undefined, rowData: [], columns: [] };
@@ -70,12 +70,12 @@ export class GridComponent implements OnInit {
                 cellStyle: (params) => {
                     let i = params.rowIndex;
                     let j = this.gridApiA.getAllDisplayedColumns().indexOf(params.column);
-                    let coords: Coords = { x: i+1, y:j+1 };
+                    let coords: Coords = { x: i + 1, y: j + 1 };
                     if (this.diffs.cellsOnlyInFileA.some(t => t.x === coords.x && t.y === coords.y)) {
                         return { backgroundColor: "#4cbfed" };
                     }
 
-                    if (this.diffs.cellsWithDifferentValues.some(t => t.x === coords.x && t.y === coords.y)){
+                    if (this.diffs.cellsWithDifferentValues.some(t => t.x === coords.x && t.y === coords.y)) {
                         return { backgroundColor: "#db1630" }
                     }
 
@@ -96,15 +96,15 @@ export class GridComponent implements OnInit {
                 cellStyle: (params) => {
                     let i = params.rowIndex;
                     let j = this.gridApiB.getAllDisplayedColumns().indexOf(params.column);
-                    let coords: Coords = { x: i+1, y:j+1 };
+                    let coords: Coords = { x: i + 1, y: j + 1 };
                     if (this.diffs.cellsOnlyInFileB.some(t => t.x === coords.x && t.y === coords.y)) {
                         return { backgroundColor: "#4ced77" };
                     }
 
-                    if (this.diffs.cellsWithDifferentValues.some(t => t.x === coords.x && t.y === coords.y)){
+                    if (this.diffs.cellsWithDifferentValues.some(t => t.x === coords.x && t.y === coords.y)) {
                         return { backgroundColor: "#db1630" }
                     }
-                    
+
                     return;
                 }
             }
@@ -145,7 +145,7 @@ export class GridComponent implements OnInit {
 
     highlightDiffs(diffs: CompareResultCoords) {
         this.gridApiA.redrawRows();
-        this.gridApiB.redrawRows();
+        this.gridApiB.redrawRows(); 
     }
 
     parseApiResponse(apiResponse: CompareApiResponse, diffs: CompareResultCoords) {

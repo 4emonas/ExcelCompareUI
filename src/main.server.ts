@@ -1,7 +1,7 @@
 import { bootstrapApplication } from '@angular/platform-browser';
-import { AppComponent } from './app/app.component';
-import { config } from './app/app.config.server';
+import { gridConfig } from './grid/grid.config.server';
+import { GridComponent } from './grid/grid.component';
 
-const bootstrap = () => bootstrapApplication(AppComponent, config);
+const bootstrap = () => bootstrapApplication(GridComponent, gridConfig);
 
 export default bootstrap;

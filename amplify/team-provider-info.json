@@ -1,0 +1,15 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-excelcompareui-dev-f915c-authRole",
+      "UnauthRoleArn": "arn:aws:iam::527492841336:role/amplify-excelcompareui-dev-f915c-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::527492841336:role/amplify-excelcompareui-dev-f915c-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-excelcompareui-dev-f915c-deployment",
+      "UnauthRoleName": "amplify-excelcompareui-dev-f915c-unauthRole",
+      "StackName": "amplify-excelcompareui-dev-f915c",
+      "StackId": "arn:aws:cloudformation:us-east-1:527492841336:stack/amplify-excelcompareui-dev-f915c/43483cd0-f86f-11ee-a314-129ddac704fb",
+      "AmplifyAppId": "dghma76plh9r7"
+    }
+  }
+}

@@ -4,7 +4,7 @@
       "AuthRoleName": "amplify-excelcompareui-dev-f915c-authRole",
       "UnauthRoleArn": "arn:aws:iam::527492841336:role/amplify-excelcompareui-dev-f915c-unauthRole",
       "AuthRoleArn": "arn:aws:iam::527492841336:role/amplify-excelcompareui-dev-f915c-authRole",
-      "Region": "us-east-1",
+      "Region": "eu-west-1",
       "DeploymentBucketName": "amplify-excelcompareui-dev-f915c-deployment",
       "UnauthRoleName": "amplify-excelcompareui-dev-f915c-unauthRole",
       "StackName": "amplify-excelcompareui-dev-f915c",

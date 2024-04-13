@@ -1,15 +1,35 @@
 @import 'ag-grid-community/styles/ag-grid.css';
 @import 'ag-grid-community/styles/ag-theme-alpine.css';
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
-.test-grid {
-    width: 700px;
-    height: 1000px;
-    flex-grow: 1;
+body,
+html {
+  height: 99%;
+  overflow-x: hidden;
+overflow-y: auto;
+margin: 1%;
 }
 
-.cell-only-in-a{
-    background-color: 'cyan'
+.main {
+  height: 100%;
+}
+
+.content {
+  height: 100%;
+}
+
+.table {
+  height: 100%;
+}
+
+.inputs {
+  margin-top: 1%;
+}
+
+.explanation p {
+  display: table-cell;
+}
+
+.explanation {
+  padding: 1%;
 }

@@ -6,6 +6,7 @@ import { AgGridModule } from 'ag-grid-angular';
 import { GridApi, GridOptions, createGrid, ColDef } from 'ag-grid-community';
 import { GridFileReader } from './grid.fileReader';
 import { RouterOutlet } from '@angular/router';
+import { environment } from '../environment/environment';
 
 export interface File {
     content: string,
@@ -39,7 +40,7 @@ export interface Coords {
     templateUrl: './grid.component.html',
     styleUrl: './grid.component.css',
     imports: [RouterOutlet, HttpClientModule, MatProgressSpinnerModule, CommonModule, AgGridModule]
-})
+}) 
 export class GridComponent implements OnInit {
     constructor(private httpClient: HttpClient) { 
     }
@@ -52,12 +53,11 @@ export class GridComponent implements OnInit {
 
     gridApiA: GridApi<any>;
     gridApiB: GridApi<any>; 
-    SERVER_URL = "https://localhost:7079/";
-    CompareApi = "Compare";
+    SERVER_URL = environment.api + environment.compareBaseUrl;
+    CompareApi = "";
     fileA: File = { content: '', readFinish: undefined, rowData: [], columns: [] };
     fileB: File = { content: '', readFinish: undefined, rowData: [], columns: [] };
-    diffs = new CompareResultCoords();
-    test: any;
+    diffs = new CompareResultCoords(); 
 
     gridOptionsFileA: GridOptions<any> = {
         columnDefs: this.fileA.columns,
@@ -72,11 +72,11 @@ export class GridComponent implements OnInit {
                     let j = this.gridApiA.getAllDisplayedColumns().indexOf(params.column);
                     let coords: Coords = { x: i + 1, y: j + 1 };
                     if (this.diffs.cellsOnlyInFileA.some(t => t.x === coords.x && t.y === coords.y)) {
-                        return { backgroundColor: "#4cbfed" };
+                        return { backgroundColor: "#17a2b8" };
                     }
 
                     if (this.diffs.cellsWithDifferentValues.some(t => t.x === coords.x && t.y === coords.y)) {
-                        return { backgroundColor: "#db1630" }
+                        return { backgroundColor: "#ffc107" }
                     }
 
                     return;
@@ -98,11 +98,11 @@ export class GridComponent implements OnInit {
                     let j = this.gridApiB.getAllDisplayedColumns().indexOf(params.column);
                     let coords: Coords = { x: i + 1, y: j + 1 };
                     if (this.diffs.cellsOnlyInFileB.some(t => t.x === coords.x && t.y === coords.y)) {
-                        return { backgroundColor: "#4ced77" };
+                        return { backgroundColor: "#28a746" };
                     }
 
                     if (this.diffs.cellsWithDifferentValues.some(t => t.x === coords.x && t.y === coords.y)) {
-                        return { backgroundColor: "#db1630" }
+                        return { backgroundColor: "#ffc107" }
                     }
 
                     return;
@@ -137,6 +137,7 @@ export class GridComponent implements OnInit {
 
         formData.append('file', "file");
         var files = [fileA, fileB];
+        console.log(this.SERVER_URL + this.CompareApi);
         this.httpClient.post<CompareApiResponse>(this.SERVER_URL + this.CompareApi, JSON.stringify(files), httpOptions).subscribe(response => {
             this.parseApiResponse(response, this.diffs);
             this.highlightDiffs(this.diffs);

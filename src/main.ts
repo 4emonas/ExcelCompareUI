@@ -4,5 +4,3 @@ import { GridComponent } from './grid/grid.component';
 
 bootstrapApplication(GridComponent, gridAppConfig)
   .catch((err) => console.error(err));
-
-

@@ -4,10 +4,10 @@
 
 body,
 html {
-  height: 99%;
-  overflow-x: hidden;
-overflow-y: auto;
-margin: 1%;
+  height: 100%;
+  width: 100%;
+  /* overflow-x: hidden;
+  overflow-y: hidden; */
 }
 
 .main {
@@ -22,14 +22,16 @@ margin: 1%;
   height: 100%;
 }
 
-.inputs {
-  margin-top: 1%;
-}
-
-.explanation p {
-  display: table-cell;
-}
-
 .explanation {
   padding: 1%;
+  height: auto;
+  font-weight: bold;
+}
+
+.menu{
+  height: 20%;
+}
+
+.grids{
+  height: 80%;
 }

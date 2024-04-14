@@ -1,26 +1,12 @@
 <main class="main">
-    <div class="content">
+    <div class="content container-fluid">
         <div class="menu">
             <div class="row explanation">
                 <div class="col-md-4 text-md-center bg-info explanation">values existing only in left file</div>
                 <div class="col-md-4 text-md-center bg-success explanation">values existing only in right file</div>
                 <div class="col-md-4 text-md-center bg-warning explanation">differences</div>
             </div>
-            <!-- <div class="row inputs">
-                <div class="col-md-6">
-                    <input type="file" class="col-md-9" (change)="readExcelFileA($event)">
-                    <div class="spinner-border fileA" role="status" *ngIf="fileA.readFinish==false">
-                        <span class="sr-only">Loading...</span>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <input type="file" class="col-md-9" (change)="readExcelFileB($event)">
-                    <div class="spinner-border fileB" role="status" *ngIf="fileB.readFinish==false">
-                        <span class="sr-only">Loading...</span>
-                    </div>
-                </div>
-            </div> -->
-            <div class="row inputs">
+            <div class="row">
                 <div class="col-md-12 text-md-center">
                     <button type="button" class="btn btn-primary btn-lg" (click)="compare()">Compare</button>
                 </div>
@@ -30,18 +16,18 @@
             <div class="col-6">
                 <!-- <file-input></file-input> -->
                 <div class="fileInput" id="fileInputA">
-                    <label for="input-fileA" id="drop-area">
+                    <label for="input-fileA" id="drop-area" ng-dragover>
                         <input type="file" id="input-fileA" (change)="readExcelFileA($event)" hidden>
                         <div id="img-view">
                             <img src="../assets/508-icon.png">
-                            <p>Drag and drop or click here - FILEA</p>
+                            <p>Drag and drop or click here</p>
                             <div class="spinner-border fileA" role="status" *ngIf="fileA.readFinish==false">
                                 <span class="sr-only">Loading...</span>
                             </div>
                         </div>
                     </label>
                 </div>
-                <div id="myGridFileA" class="ag-theme-alpine table"></div>
+                <div id="myGridFileA" class="ag-theme-alpine table" hidden></div>
             </div>
             <div class="col-6">
                 <div class="fileInput" id="fileInputB">
@@ -49,17 +35,15 @@
                         <input type="file" id="input-fileB" (change)="readExcelFileB($event)" hidden>
                         <div id="img-view">
                             <img src="../assets/508-icon.png">
-                            <p>Drag and drop or click here - FILEB</p>
+                            <p>Drag and drop or click here</p>
                             <div class="spinner-border fileB" role="status" *ngIf="fileB.readFinish==false">
                                 <span class="sr-only">Loading...</span>
                             </div>
                         </div>
                     </label>
                 </div>
-                <div id="myGridFileB" class="ag-theme-alpine table"></div>
+                <div id="myGridFileB" class="ag-theme-alpine table" hidden></div>
             </div>
         </div>
     </div>
 </main>
-
-<!-- <router-outlet /> -->

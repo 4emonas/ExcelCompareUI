@@ -45,10 +45,6 @@ export class GridComponent implements OnInit {
     constructor(private httpClient: HttpClient) { 
     }
     ngOnInit(): void {
-        let gridFileA = document.querySelector<HTMLElement>("#myGridFileA")!;
-        let gridFileB = document.querySelector<HTMLElement>("#myGridFileB")!;
-        this.gridApiA = createGrid(gridFileA, this.gridOptionsFileA);
-        this.gridApiB = createGrid(gridFileB, this.gridOptionsFileB);
     }
 
     gridApiA: GridApi<any>;
@@ -112,11 +108,16 @@ export class GridComponent implements OnInit {
     };
 
     async readExcelFileA(e: any) {
-        console.log('a');
+        let gridFileA = document.querySelector<HTMLElement>("#myGridFileA")!;
+        document.querySelector<HTMLElement>("#fileInputA")?.setAttribute("hidden", "true");
+        this.gridApiA = createGrid(gridFileA, this.gridOptionsFileA);
         GridFileReader.readExcelFile(e, this.fileA, this.gridApiA);
     }
 
     async readExcelFileB(e: any) {
+        let gridFileB = document.querySelector<HTMLElement>("#myGridFileB")!;
+        document.querySelector<HTMLElement>("#fileInputB")?.setAttribute("hidden", "true");
+        this.gridApiB = createGrid(gridFileB, this.gridOptionsFileB);
         GridFileReader.readExcelFile(e, this.fileB, this.gridApiB);
     }
 

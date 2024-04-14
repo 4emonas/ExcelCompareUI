@@ -1,0 +1,12 @@
+<div class="fileInput" id="fileInputA">
+    <label for="input-file" id="drop-area">
+        <input type="file" id="input-file" (change)="readExcelFileA($event)" hidden>
+        <div id="img-view">
+            <img src="../assets/508-icon.png">
+            <p>Drag and drop or click here</p>
+            <div class="spinner-border fileA" role="status" *ngIf="fileA.readFinish==false">
+                <span class="sr-only">Loading...</span>
+            </div>
+        </div>
+    </label>
+</div>

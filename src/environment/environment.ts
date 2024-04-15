@@ -1,4 +1,4 @@
 export const environment = {
-    api: 'https://xlscompare.com/',
+    api: 'https://api.xlscompare.com/',
     compareBaseUrl: 'Compare' 
 }

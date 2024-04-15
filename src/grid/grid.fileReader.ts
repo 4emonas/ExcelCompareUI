@@ -9,9 +9,7 @@ export class GridFileReader implements OnInit {
         console.log('init'); 
     }
 
-    static async readExcelFile(e: any, targetFile: File, targetGridApi: GridApi) {
-        console.log("a");
-        const file = e.target.files[0];
+    static async readExcelFile(file: any, targetFile: File, targetGridApi: GridApi) {
         targetFile.content = "";
         targetFile.readFinish = false;
         if (file === "") {

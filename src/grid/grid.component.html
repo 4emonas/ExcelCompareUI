@@ -20,7 +20,7 @@
                         <input type="file" id="input-fileA" (change)="readExcelFileA($event)" hidden>
                         <div id="img-view">
                             <img src="../assets/508-icon.png">
-                            <p>Drag and drop or click here</p>
+                            <p>Drag and drop first file or click here</p>
                             <div class="spinner-border fileA" role="status" *ngIf="fileA.readFinish==false">
                                 <span class="sr-only">Loading...</span>
                             </div>
@@ -35,7 +35,7 @@
                         <input type="file" id="input-fileB" (change)="readExcelFileB($event)" hidden>
                         <div id="img-view">
                             <img src="../assets/508-icon.png">
-                            <p>Drag and drop or click here</p>
+                            <p>Drag and drop second file or click here</p>
                             <div class="spinner-border fileB" role="status" *ngIf="fileB.readFinish==false">
                                 <span class="sr-only">Loading...</span>
                             </div>

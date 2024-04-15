@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule, HttpHeaders, HttpClient } from '@angular/common/http';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
@@ -40,20 +40,39 @@ export interface Coords {
     templateUrl: './grid.component.html',
     styleUrl: './grid.component.css',
     imports: [RouterOutlet, HttpClientModule, MatProgressSpinnerModule, CommonModule, AgGridModule]
-}) 
+})
 export class GridComponent implements OnInit {
-    constructor(private httpClient: HttpClient) { 
+    constructor(private httpClient: HttpClient) {
     }
     ngOnInit(): void {
     }
 
+    @HostListener("dragover", ['$event']) onDragOver(event: Event) {
+        event.preventDefault();
+    }
+
+    @HostListener("drop", ['$event']) onDrop(event: any) {
+        event.preventDefault();
+        console.log(event);
+        let identifier :string = event.toElement.lastElementChild.innerText;
+        if (identifier.indexOf("first")>=0){
+            this.readExcelFileA(event.dataTransfer.files);
+            return;
+        }
+
+        if (identifier.indexOf("second")>=0){
+            this.readExcelFileB(event.dataTransfer.files);
+            return;
+        }
+    }
+
     gridApiA: GridApi<any>;
-    gridApiB: GridApi<any>; 
+    gridApiB: GridApi<any>;
     SERVER_URL = environment.api + environment.compareBaseUrl;
     CompareApi = "";
     fileA: File = { content: '', readFinish: undefined, rowData: [], columns: [] };
     fileB: File = { content: '', readFinish: undefined, rowData: [], columns: [] };
-    diffs = new CompareResultCoords(); 
+    diffs = new CompareResultCoords();
 
     gridOptionsFileA: GridOptions<any> = {
         columnDefs: this.fileA.columns,
@@ -80,6 +99,8 @@ export class GridComponent implements OnInit {
             }
         }
     };
+
+
 
     gridOptionsFileB: GridOptions<any> = {
         columnDefs: this.fileB.columns,
@@ -112,15 +133,24 @@ export class GridComponent implements OnInit {
         document.querySelector<HTMLElement>("#fileInputA")?.setAttribute("hidden", "true");
         gridFileA.removeAttribute("hidden");
         this.gridApiA = createGrid(gridFileA, this.gridOptionsFileA);
-        GridFileReader.readExcelFile(e, this.fileA, this.gridApiA);
+        if (e.type==typeof(Event)){
+            GridFileReader.readExcelFile(e.target.files[0], this.fileA, this.gridApiA);
+        }else{
+            GridFileReader.readExcelFile(e[0], this.fileA, this.gridApiA);
+        }
     }
 
     async readExcelFileB(e: any) {
+        console.log(e);
         let gridFileB = document.querySelector<HTMLElement>("#myGridFileB")!;
         document.querySelector<HTMLElement>("#fileInputB")?.setAttribute("hidden", "true");
         gridFileB.removeAttribute("hidden");
         this.gridApiB = createGrid(gridFileB, this.gridOptionsFileB);
-        GridFileReader.readExcelFile(e, this.fileB, this.gridApiB);
+        if (e.type==typeof(Event)){
+            GridFileReader.readExcelFile(e.target.files[0], this.fileB, this.gridApiB);
+        }else{
+            GridFileReader.readExcelFile(e[0], this.fileB, this.gridApiB);
+        }
     }
 
     public compare() {
@@ -149,7 +179,7 @@ export class GridComponent implements OnInit {
 
     highlightDiffs(diffs: CompareResultCoords) {
         this.gridApiA.redrawRows();
-        this.gridApiB.redrawRows(); 
+        this.gridApiB.redrawRows();
     }
 
     parseApiResponse(apiResponse: CompareApiResponse, diffs: CompareResultCoords) {

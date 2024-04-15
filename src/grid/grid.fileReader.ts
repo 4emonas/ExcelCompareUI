@@ -10,6 +10,8 @@ export class GridFileReader implements OnInit {
     }
 
     static async readExcelFile(file: any, targetFile: File, targetGridApi: GridApi) {
+        targetFile.rowData = [];
+        targetFile.columns = [];
         targetFile.content = "";
         targetFile.readFinish = false;
         if (file === "") {

@@ -6,6 +6,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    border: 1px solid #babfc7;
+    border-radius: 3px;
 }
 
 #drop-area{

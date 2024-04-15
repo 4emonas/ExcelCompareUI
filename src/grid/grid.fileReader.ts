@@ -6,7 +6,6 @@ import { GridApi } from 'ag-grid-community';
 @Injectable()
 export class GridFileReader implements OnInit {
     ngOnInit(): void {
-        console.log('init'); 
     }
 
     static async readExcelFile(file: any, targetFile: File, targetGridApi: GridApi) {
@@ -42,7 +41,6 @@ export class GridFileReader implements OnInit {
             targetFile.columns.push({ field: this.colName(i), type:"a" });
         }
 
-        console.log("colDefs" + targetFile.columns);
         targetGridApi.setGridOption("columnDefs", targetFile.columns);
     }
 
@@ -55,11 +53,9 @@ export class GridFileReader implements OnInit {
                 let column = this.colName(j);
                 object[column] = value;
             }
-            console.log(object);
             targetFile.rowData.push(object);
         }
 
-        console.log(targetFile.rowData);
         targetGridApi.setGridOption("rowData", targetFile.rowData);
     }
 

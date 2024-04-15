@@ -53,7 +53,6 @@ export class GridComponent implements OnInit {
 
     @HostListener("drop", ['$event']) onDrop(event: any) {
         event.preventDefault();
-        console.log(event);
         let identifier :string = event.toElement.lastElementChild.innerText;
         if (identifier.indexOf("first")>=0){
             this.readExcelFileA(event.dataTransfer.files);
@@ -133,7 +132,7 @@ export class GridComponent implements OnInit {
         document.querySelector<HTMLElement>("#fileInputA")?.setAttribute("hidden", "true");
         gridFileA.removeAttribute("hidden");
         this.gridApiA = this.gridApiA == undefined ? createGrid(gridFileA, this.gridOptionsFileA) : this.gridApiA;
-        if (e.type==typeof(Event)){
+        if (e.type=="change"){
             GridFileReader.readExcelFile(e.target.files[0], this.fileA, this.gridApiA);
         }else{
             GridFileReader.readExcelFile(e[0], this.fileA, this.gridApiA);
@@ -146,7 +145,7 @@ export class GridComponent implements OnInit {
         document.querySelector<HTMLElement>("#fileInputB")?.setAttribute("hidden", "true");
         gridFileB.removeAttribute("hidden");
         this.gridApiB = this.gridApiB == undefined ? createGrid(gridFileB, this.gridOptionsFileB) : this.gridApiB;
-        if (e.type==typeof(Event)){
+        if (e.type=="change"){
             GridFileReader.readExcelFile(e.target.files[0], this.fileB, this.gridApiB);
         }else{
             GridFileReader.readExcelFile(e[0], this.fileB, this.gridApiB);
@@ -186,7 +185,6 @@ export class GridComponent implements OnInit {
 
         formData.append('file', "file");
         var files = [fileA, fileB];
-        console.log(this.SERVER_URL + this.CompareApi);
         this.httpClient.post<CompareApiResponse>(this.SERVER_URL + this.CompareApi, JSON.stringify(files), httpOptions).subscribe(response => {
             this.parseApiResponse(response, this.diffs);
             this.highlightDiffs(this.diffs);
@@ -194,14 +192,12 @@ export class GridComponent implements OnInit {
     }
 
     highlightDiffs(diffs: CompareResultCoords) {
-        this.gridApiA.redrawRows();
-        this.gridApiB.redrawRows();
+        this.gridApiA?.redrawRows();
+        this.gridApiB?.redrawRows();
     }
 
     parseApiResponse(apiResponse: CompareApiResponse, diffs: CompareResultCoords) {
-        console.log(apiResponse.result.cellsOnlyInFileA);
         this.parseResults(apiResponse.result.cellsOnlyInFileA, diffs.cellsOnlyInFileA);
-        console.log(diffs.cellsOnlyInFileA);
         this.parseResults(apiResponse.result.cellsOnlyInFileB, diffs.cellsOnlyInFileB);
         this.parseResults(apiResponse.result.cellsWithDifferentValues, diffs.cellsWithDifferentValues);
     }

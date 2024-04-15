@@ -132,7 +132,7 @@ export class GridComponent implements OnInit {
         let gridFileA = document.querySelector<HTMLElement>("#myGridFileA")!;
         document.querySelector<HTMLElement>("#fileInputA")?.setAttribute("hidden", "true");
         gridFileA.removeAttribute("hidden");
-        this.gridApiA = createGrid(gridFileA, this.gridOptionsFileA);
+        this.gridApiA = this.gridApiA == undefined ? createGrid(gridFileA, this.gridOptionsFileA) : this.gridApiA;
         if (e.type==typeof(Event)){
             GridFileReader.readExcelFile(e.target.files[0], this.fileA, this.gridApiA);
         }else{
@@ -141,11 +141,11 @@ export class GridComponent implements OnInit {
     }
 
     async readExcelFileB(e: any) {
-        console.log(e);
+        
         let gridFileB = document.querySelector<HTMLElement>("#myGridFileB")!;
         document.querySelector<HTMLElement>("#fileInputB")?.setAttribute("hidden", "true");
         gridFileB.removeAttribute("hidden");
-        this.gridApiB = createGrid(gridFileB, this.gridOptionsFileB);
+        this.gridApiB = this.gridApiB == undefined ? createGrid(gridFileB, this.gridOptionsFileB) : this.gridApiB;
         if (e.type==typeof(Event)){
             GridFileReader.readExcelFile(e.target.files[0], this.fileB, this.gridApiB);
         }else{
@@ -160,6 +160,22 @@ export class GridComponent implements OnInit {
         }
 
         this.uploadFile(this.fileA.content, this.fileB.content);
+    }
+
+    public clearFileA(){
+        this.diffs = new CompareResultCoords();
+        this.highlightDiffs(this.diffs);
+        let gridFileA = document.querySelector<HTMLElement>("#myGridFileA")!;
+        gridFileA.setAttribute("hidden", "true");
+        document.querySelector<HTMLElement>("#fileInputA")?.removeAttribute("hidden");
+    }
+
+    public clearFileB(){
+        this.diffs = new CompareResultCoords();
+        this.highlightDiffs(this.diffs);
+        let gridFileA = document.querySelector<HTMLElement>("#myGridFileB")!;
+        gridFileA.setAttribute("hidden", "true");
+        document.querySelector<HTMLElement>("#fileInputB")?.removeAttribute("hidden");
     }
 
     uploadFile(fileA: string, fileB: string) {

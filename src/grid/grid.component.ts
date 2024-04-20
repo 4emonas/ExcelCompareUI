@@ -40,8 +40,6 @@ export interface Coords {
     styleUrl: './grid.component.css',
 })
 export class GridComponent implements OnInit {
-    constructor(private httpClient: HttpClient) {
-    }
     ngOnInit(): void {
     }
 
@@ -126,6 +124,7 @@ export class GridComponent implements OnInit {
     };
 
     async readExcelFileA(e: any) {
+        console.log("gridFileA");
         let gridFileA = document.querySelector<HTMLElement>("#myGridFileA")!;
         document.querySelector<HTMLElement>("#fileInputA")?.setAttribute("hidden", "true");
         gridFileA.removeAttribute("hidden");
@@ -160,6 +159,7 @@ export class GridComponent implements OnInit {
     }
 
     public clearFileA(){
+        console.log("clear grid");
         this.diffs = new CompareResultCoords();
         this.highlightDiffs(this.diffs);
         let gridFileA = document.querySelector<HTMLElement>("#myGridFileA")!;
@@ -183,10 +183,10 @@ export class GridComponent implements OnInit {
 
         formData.append('file', "file");
         var files = [fileA, fileB];
-        this.httpClient.post<CompareApiResponse>(this.SERVER_URL + this.CompareApi, JSON.stringify(files), httpOptions).subscribe(response => {
-            this.parseApiResponse(response, this.diffs);
-            this.highlightDiffs(this.diffs);
-        });
+        // this.httpClient.post<CompareApiResponse>(this.SERVER_URL + this.CompareApi, JSON.stringify(files), httpOptions).subscribe(response => {
+        //     this.parseApiResponse(response, this.diffs);
+        //     this.highlightDiffs(this.diffs);
+        // });
     }
 
     highlightDiffs(diffs: CompareResultCoords) {

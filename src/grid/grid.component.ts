@@ -36,10 +36,8 @@ export interface Coords {
 
 @Component({
     selector: "grid-app",
-    standalone: true,
     templateUrl: './grid.component.html',
     styleUrl: './grid.component.css',
-    imports: [RouterOutlet, HttpClientModule, MatProgressSpinnerModule, CommonModule, AgGridModule]
 })
 export class GridComponent implements OnInit {
     constructor(private httpClient: HttpClient) {

@@ -4,6 +4,7 @@ import { GridComponent } from '../grid/grid.component';
 import { InfoComponent } from '../info/info.component';
 
 const routes: Routes = [
+  {path: '', component:GridComponent},
   {path: 'grid', component:GridComponent},
   {path: 'info', component:InfoComponent}
 ];

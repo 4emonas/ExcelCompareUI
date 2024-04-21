@@ -1,7 +1,6 @@
 @import 'ag-grid-community/styles/ag-grid.css';
 @import 'ag-grid-community/styles/ag-theme-alpine.css';
 
-
 body,
 html {
   height: 100%;
@@ -31,8 +30,8 @@ html {
   padding: 0.5em;
 }
 
-.menu{
-  height: 15%;
+.grid-button{
+  width: 33.3334%;
 }
 
 .grids{

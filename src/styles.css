@@ -7,8 +7,6 @@ html {
   height: 100%;
   width: 100%;
   background-color: #f2f2f2;
-  /* overflow-x: hidden;
-  overflow-y: hidden; */
 }
 
 .main {
@@ -24,13 +22,17 @@ html {
 }
 
 .explanation {
-  padding: 1%;
+  padding: 0.5em;
   height: auto;
   font-weight: bold;
 }
 
+.grid-buttons{
+  padding: 0.5em;
+}
+
 .menu{
-  height: 20%;
+  height: 15%;
 }
 
 .grids{

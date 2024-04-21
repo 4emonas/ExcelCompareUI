@@ -1,11 +1,7 @@
 import { Component, OnInit, HostListener } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { HttpClientModule, HttpHeaders, HttpClient } from '@angular/common/http';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { AgGridModule } from 'ag-grid-angular';
+import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { GridApi, GridOptions, createGrid, ColDef } from 'ag-grid-community';
 import { GridFileReader } from './grid.fileReader';
-import { RouterOutlet } from '@angular/router';
 import { environment } from '../environment/environment';
 
 export interface File {
@@ -40,6 +36,7 @@ export interface Coords {
     styleUrl: './grid.component.css',
 })
 export class GridComponent implements OnInit {
+    constructor(private httpClient: HttpClient){}
     ngOnInit(): void {
     }
 
@@ -183,10 +180,10 @@ export class GridComponent implements OnInit {
 
         formData.append('file', "file");
         var files = [fileA, fileB];
-        // this.httpClient.post<CompareApiResponse>(this.SERVER_URL + this.CompareApi, JSON.stringify(files), httpOptions).subscribe(response => {
-        //     this.parseApiResponse(response, this.diffs);
-        //     this.highlightDiffs(this.diffs);
-        // });
+        this.httpClient.post<CompareApiResponse>(this.SERVER_URL + this.CompareApi, JSON.stringify(files), httpOptions).subscribe(response => {
+            this.parseApiResponse(response, this.diffs);
+            this.highlightDiffs(this.diffs);
+        });
     }
 
     highlightDiffs(diffs: CompareResultCoords) {

@@ -1,11 +1,7 @@
 import { Component, OnInit, HostListener } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { HttpClientModule, HttpHeaders, HttpClient } from '@angular/common/http';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { AgGridModule } from 'ag-grid-angular';
+import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { GridApi, GridOptions, createGrid, ColDef } from 'ag-grid-community';
 import { GridFileReader } from './grid.fileReader';
-import { RouterOutlet } from '@angular/router';
 import { environment } from '../environment/environment';
 
 export interface File {
@@ -36,14 +32,11 @@ export interface Coords {
 
 @Component({
     selector: "grid-app",
-    standalone: true,
     templateUrl: './grid.component.html',
     styleUrl: './grid.component.css',
-    imports: [RouterOutlet, HttpClientModule, MatProgressSpinnerModule, CommonModule, AgGridModule]
 })
 export class GridComponent implements OnInit {
-    constructor(private httpClient: HttpClient) {
-    }
+    constructor(private httpClient: HttpClient){}
     ngOnInit(): void {
     }
 
@@ -128,6 +121,7 @@ export class GridComponent implements OnInit {
     };
 
     async readExcelFileA(e: any) {
+        console.log("gridFileA");
         let gridFileA = document.querySelector<HTMLElement>("#myGridFileA")!;
         document.querySelector<HTMLElement>("#fileInputA")?.setAttribute("hidden", "true");
         gridFileA.removeAttribute("hidden");
@@ -162,6 +156,7 @@ export class GridComponent implements OnInit {
     }
 
     public clearFileA(){
+        console.log("clear grid");
         this.diffs = new CompareResultCoords();
         this.highlightDiffs(this.diffs);
         let gridFileA = document.querySelector<HTMLElement>("#myGridFileA")!;

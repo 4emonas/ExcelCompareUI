@@ -1,14 +1,11 @@
 @import 'ag-grid-community/styles/ag-grid.css';
 @import 'ag-grid-community/styles/ag-theme-alpine.css';
 
-
 body,
 html {
   height: 100%;
   width: 100%;
   background-color: #f2f2f2;
-  /* overflow-x: hidden;
-  overflow-y: hidden; */
 }
 
 .main {
@@ -24,15 +21,19 @@ html {
 }
 
 .explanation {
-  padding: 1%;
+  padding: 0.5em;
   height: auto;
   font-weight: bold;
 }
 
-.menu{
-  height: 20%;
+.grid-buttons{
+  padding: 0.5em;
+}
+
+.grid-button{
+  width: 33.3334%;
 }
 
 .grids{
-  height: 80%;
+  height: 85%;
 }

@@ -1,0 +1,43 @@
+a:link,
+a:visited,
+a:active,
+a:visited,
+a:link {
+    color: rgb(255, 255, 255);
+}
+
+a:hover {
+    color: rgba(218, 218, 218, 0.39);
+}
+
+#logo a:hover{
+    color: rgb(255, 255, 255) !important;
+}
+
+a:link,
+a:visited,
+a:active,
+a:hover,
+a:visited,
+a:link {
+    text-decoration: none;
+}
+
+#logo{
+    float: left;
+}
+
+.navigation{
+    float: right;
+    margin-left: auto;
+    margin-right: 5%;
+}
+
+.navigation a{
+    margin-right: 15%;
+}
+
+.top{
+    font-size: x-large;
+    display: flex; 
+}

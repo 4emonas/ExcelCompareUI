@@ -6,12 +6,14 @@ import { AppComponent } from './app.component';
 import { GridComponent } from '../grid/grid.component';
 import { InfoComponent } from '../info/info.component';
 import { HttpClientModule, provideHttpClient, withFetch } from '@angular/common/http';
+import { ContactComponent } from '../contact/contact.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     GridComponent,
-    InfoComponent
+    InfoComponent,
+    ContactComponent
   ],
   imports: [
     BrowserModule,

@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { GridComponent } from '../grid/grid.component';
 
 @Component({
   selector: 'app',
@@ -7,11 +6,4 @@ import { GridComponent } from '../grid/grid.component';
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  constructor(){
-    console.log("test");
-  }
-
-  public button() {
-    alert("buton");
-  }
 }

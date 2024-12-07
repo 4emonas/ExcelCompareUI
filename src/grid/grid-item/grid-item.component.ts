@@ -11,6 +11,10 @@ import { File, CompareResultCoords, Coords } from '../entities/entities'
 })
 export class GridItemComponent {
 
+  ngOnInit() {
+    console.log('GridItemComponent initialized');
+  }
+  
   @Input() diffs: CompareResultCoords;
 
   gridApi: GridApi<any>;

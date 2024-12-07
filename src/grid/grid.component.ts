@@ -38,6 +38,7 @@ export interface Coords {
 export class GridComponent implements OnInit {
     constructor(private httpClient: HttpClient){}
     ngOnInit(): void {
+        console.log('GridComponent initialized');
     }
 
     @HostListener("dragover", ['$event']) onDragOver(event: Event) {

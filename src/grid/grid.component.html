@@ -26,16 +26,18 @@
                         <div id="img-view">
                             <img src="../assets/508-icon.png">
                             <p>Drag and drop first file or click here</p>
-                            <div class="spinner-border fileA" role="status" *ngIf="fileA.readFinish==false">
+                            <!-- <div class="spinner-border fileA" role="status" *ngIf="fileA.readFinish==false">
                                 <span class="sr-only">Loading...</span>
-                            </div>
+                            </div> -->
                         </div>
                     </label>
                 </div>
                 <div id="myGridFileA" class="ag-theme-alpine table" hidden></div>
             </div>
-            <div class="col-6">
-                <div class="fileInput" id="fileInputB">
+            
+             <div class="col-6">
+                <app-grid-item></app-grid-item>
+            <!--    <div class="fileInput" id="fileInputB">
                     <label for="input-fileB" id="drop-area">
                         <input type="file" id="input-fileB" (change)="readExcelFileB($event)" hidden>
                         <div id="img-view">
@@ -47,7 +49,7 @@
                         </div>
                     </label>
                 </div>
-                <div id="myGridFileB" class="ag-theme-alpine table" hidden></div>
+                <div id="myGridFileB" class="ag-theme-alpine table" hidden></div> -->
             </div>
         </div>
     </div>

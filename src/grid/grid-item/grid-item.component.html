@@ -1,0 +1,15 @@
+<div class="col-6">
+    <div class="fileInput" id="fileInputA">
+        <label for="input-fileA" id="drop-area" ng-dragover>
+            <input type="file" id="input-fileA" (change)="readExcelFile($event)" hidden>
+            <div id="img-view">
+                <img src="../assets/508-icon.png">
+                <p>Drag and drop first file or click here</p>
+                <div class="spinner-border fileA" role="status" *ngIf="fileA.readFinish==false">
+                    <span class="sr-only">Loading...</span>
+                </div>
+            </div>
+        </label>
+    </div>
+    <div id="myGridFileA" class="ag-theme-alpine table" hidden></div>
+</div>

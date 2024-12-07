@@ -3,7 +3,6 @@ import { BrowserModule, provideClientHydration } from '@angular/platform-browser
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { GridComponent } from '../grid/grid.component';
 import { GridModule } from '../grid/grid.module';
 import { InfoComponent } from '../info/info.component';
 import { HttpClientModule, provideHttpClient, withFetch } from '@angular/common/http';

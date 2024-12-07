@@ -4,8 +4,8 @@ import { GridComponent } from './grid.component';
 import { GridItemModule } from './grid-item/grid-item.module';  // Import GridItemModule
 
 @NgModule({
-  declarations: [GridComponent],  // Declare GridComponent here
-  imports: [CommonModule, GridItemModule],  // Import GridItemModule so GridItemComponent can be used
+  declarations: [GridComponent],
+  imports: [CommonModule, GridItemModule],
   exports: [GridComponent]
 })
 export class GridModule {}

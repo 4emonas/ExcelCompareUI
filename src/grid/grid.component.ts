@@ -1,9 +1,10 @@
-import { Component, OnInit, HostListener } from '@angular/core';
+import { Component, ViewChildren, QueryList, OnInit, HostListener } from '@angular/core';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { GridApi, GridOptions, createGrid, ColDef } from 'ag-grid-community';
 import { GridFileReader } from './grid.fileReader';
 import { environment } from '../environment/environment';
 import { File, CompareResultCoords, Coords, FileInputs } from './entities/entities';
+import { GridItemComponent } from './grid-item/grid-item.component';
 
 interface CompareApiResponse {
     result: {
@@ -41,6 +42,8 @@ export class GridComponent implements OnInit {
         //     return;
         // }
     }
+
+    @ViewChildren(GridItemComponent) GridItems: QueryList<GridItemComponent>;
 
     SERVER_URL = environment.api + environment.compareBaseUrl;
     CompareApi = "";
@@ -92,8 +95,9 @@ export class GridComponent implements OnInit {
     }
 
     highlightDiffs(diffs: CompareResultCoords) {
-        //this.gridApiA?.redrawRows();
-        //this.gridApiB?.redrawRows();
+        this.GridItems.forEach(item => {
+            item.highlightDiffs();
+        })
     }
 
     parseApiResponse(apiResponse: CompareApiResponse, diffs: CompareResultCoords) {

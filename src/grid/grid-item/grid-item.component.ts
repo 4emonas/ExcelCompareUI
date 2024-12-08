@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { GridApi, GridOptions, createGrid, ColDef } from 'ag-grid-community';
 import { GridFileReader } from '../grid.fileReader';
-import { File, CompareResultCoords, Coords, FileInputs } from '../entities/entities'
+import { File, CompareResultCoords, Coords, FileInputs, colourDifferenceDictionary } from '../entities/entities'
 
 
 @Component({
@@ -10,7 +10,6 @@ import { File, CompareResultCoords, Coords, FileInputs } from '../entities/entit
   styleUrl: './grid-item.component.css'
 })
 export class GridItemComponent {
-
 
   ngOnInit() {
     this.gridFileSelector = "#myGridFile" + this.fileName;
@@ -42,7 +41,7 @@ export class GridItemComponent {
           let coords: Coords = { x: i + 1, y: j + 1 };
           const arrayName = 'cellsOnlyInFile' + this.fileName;
           if ((this.diffs[arrayName] as Coords[]).some(t => t.x === coords.x && t.y === coords.y)) {
-            return { backgroundColor: "#17a2b8" };
+            return { backgroundColor: colourDifferenceDictionary[this.fileName] };
           }
 
           if (this.diffs.cellsWithDifferentValues.some(t => t.x === coords.x && t.y === coords.y)) {

@@ -18,7 +18,12 @@ export class CompareResultCoords {
     cellsWithDifferentValues: Coords[] = [];
 }
 
-export class FileInputs{
+export class FileInputs {
     fileA: File = { content: '', readFinish: undefined, rowData: [], columns: [] };
     fileB: File = { content: '', readFinish: undefined, rowData: [], columns: [] };
 }
+
+export const colourDifferenceDictionary = {
+    'A': '#17a2b8',
+    'B': '#28a746'
+};

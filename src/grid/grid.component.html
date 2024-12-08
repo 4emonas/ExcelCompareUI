@@ -20,6 +20,12 @@
         </div>
         <div class="row grids">
             <div class="col-6">
+                <app-grid-item [fileName]="'A'"></app-grid-item>
+            </div>
+            <div class="col-6">
+                <app-grid-item [fileName]="'B'"></app-grid-item>
+            </div>
+            <!-- <div class="col-6">
                 <div class="fileInput" id="fileInputA">
                     <label for="input-fileA" id="drop-area" ng-dragover>
                         <input type="file" id="input-fileA" (change)="readExcelFileA($event)" hidden>
@@ -33,11 +39,7 @@
                     </label>
                 </div>
                 <div id="myGridFileA" class="ag-theme-alpine table" hidden></div>
-            </div>
-            <div class="col-6">
-                <app-grid-item [fileName]="'B'"></app-grid-item>
-            </div>
-
+            </div> -->
             <!--    <div class="fileInput" id="fileInputB">
                     <label for="input-fileB" id="drop-area">
                         <input type="file" id="input-fileB" (change)="readExcelFileB($event)" hidden>
@@ -50,7 +52,7 @@
                         </div>
                     </label>
                 </div>
-                <div id="myGridFileB" class="ag-theme-alpine table" hidden></div> -->
+            <div id="myGridFileB" class="ag-theme-alpine table" hidden></div> -->
         </div>
     </div>
 </main>

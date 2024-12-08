@@ -42,7 +42,8 @@ export class GridItemComponent {
                 let i = params.rowIndex;
                 let j = this.gridApi.getAllDisplayedColumns().indexOf(params.column);
                 let coords: Coords = { x: i + 1, y: j + 1 };
-                if (this.diffs.cellsOnlyInFileB.some(t => t.x === coords.x && t.y === coords.y)) {
+                const arrayName = 'cellsOnlyInFile' + this.fileName;
+                if ((this.diffs[arrayName] as Coords[]).some(t => t.x === coords.x && t.y === coords.y)) {
                     return { backgroundColor: "#17a2b8" };
                 }
 

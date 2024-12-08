@@ -17,3 +17,8 @@ export class CompareResultCoords {
     cellsOnlyInFileB: Coords[] = [];
     cellsWithDifferentValues: Coords[] = [];
 }
+
+export class FileInputs{
+    fileA: File = { content: '', readFinish: undefined, rowData: [], columns: [] };
+    fileB: File = { content: '', readFinish: undefined, rowData: [], columns: [] };
+}

@@ -3,6 +3,7 @@ import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { GridApi, GridOptions, createGrid, ColDef } from 'ag-grid-community';
 import { GridFileReader } from './grid.fileReader';
 import { environment } from '../environment/environment';
+import { FileInputs } from './entities/entities';
 
 export interface File {
     content: string,
@@ -65,6 +66,7 @@ export class GridComponent implements OnInit {
     CompareApi = "";
     fileA: File = { content: '', readFinish: undefined, rowData: [], columns: [] };
     fileB: File = { content: '', readFinish: undefined, rowData: [], columns: [] };
+    fileInputs = new FileInputs();
     diffs = new CompareResultCoords();
 
     gridOptionsFileA: GridOptions<any> = {
@@ -148,6 +150,7 @@ export class GridComponent implements OnInit {
     }
 
     public compare() {
+        console.log(this.fileInputs);
         if (!this.fileA.readFinish || !this.fileB.readFinish) {
             alert('files are not fully loaded yet');
             return;

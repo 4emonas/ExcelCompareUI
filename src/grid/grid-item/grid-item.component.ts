@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { GridApi, GridOptions, createGrid, ColDef } from 'ag-grid-community';
 import { GridFileReader } from '../grid.fileReader';
-import { File, CompareResultCoords, Coords } from '../entities/entities'
+import { File, CompareResultCoords, Coords, FileInputs } from '../entities/entities'
 
 
 @Component({
@@ -10,21 +10,21 @@ import { File, CompareResultCoords, Coords } from '../entities/entities'
   styleUrl: './grid-item.component.css'
 })
 export class GridItemComponent {
+  
+  
   ngOnInit() {
-    console.log('GridItemComponent initialized');
-
     this.gridFileSelector = "#myGridFile" + this.fileName;
-    console.log('gridFileSelector' + this.gridFileSelector);
-
     this.fileInputSelector = "#fileInput" + this.fileName;
-    console.log('fileInputSelector' + this.fileInputSelector);
+    this.file = this.fileInputs['file' + this.fileName];
   }
   
-  @Input() fileName: string;
+  @Input() fileName: string = "";
+  @Input() fileInputs: FileInputs;
   @Input() diffs: CompareResultCoords;
 
   gridApi: GridApi<any>;
   file: File = { content: '', readFinish: undefined, rowData: [], columns: [] };
+  
   gridFileSelector: string = "";
   fileInputSelector: string = "";
 
@@ -72,7 +72,7 @@ export class GridItemComponent {
   public clearFile(){
     console.log("clear grid");
     this.diffs = new CompareResultCoords();
-    //this.highlightDiffs(this.diffs);
+    //this.highlightDiffs(this.diffs); //TODO: bring this back when done as last step
     this.gridApi?.redrawRows();
     let gridFile = document.querySelector<HTMLElement>(this.gridFileSelector)!;
     gridFile.setAttribute("hidden", "true");

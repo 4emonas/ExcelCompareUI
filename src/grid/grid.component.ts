@@ -25,22 +25,6 @@ export class GridComponent implements OnInit {
         console.log('GridComponent initialized');
     }
 
-    @HostListener("dragover", ['$event']) onDragOver(event: Event) {
-        event.preventDefault();
-    }
-
-    @HostListener("drop", ['$event']) onDrop(event: any) {
-        event.preventDefault();
-        let identifier :string = event.toElement.lastElementChild.innerText;
-        // if (identifier.indexOf("first")>=0){
-        //     this.readExcelFileA(event.dataTransfer.files);
-        //     return;
-        // }
-
-        // if (identifier.indexOf("second")>=0){
-        //     this.readExcelFileB(event.dataTransfer.files);
-        //     return;
-        // }
     }
 
     @ViewChildren(GridItemComponent) GridItems: QueryList<GridItemComponent>;

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, HostListener } from '@angular/core';
 import { GridApi, GridOptions, createGrid, ColDef } from 'ag-grid-community';
 import { GridFileReader } from '../grid.fileReader';
 import { File, CompareResultCoords, Coords, FileInputs, colourDifferenceDictionary } from '../entities/entities'
@@ -20,6 +20,17 @@ export class GridItemComponent {
   @Input() fileName: string = "";
   @Input() fileInputs: FileInputs;
   @Input() diffs: CompareResultCoords;
+
+  @HostListener("dragover", ['$event']) onDragOver(event: Event) {
+    console.log("dragover " + this.fileName);
+    event.preventDefault();
+  }
+
+  @HostListener("drop", ['$event']) onDrop(event: any) {
+    console.log("drop " + this.fileName);
+    event.preventDefault();
+    this.readExcelFile(event.dataTransfer.files);
+  }
 
   gridApi: GridApi<any>;
   file: File = { content: '', readFinish: undefined, rowData: [], columns: [] };
@@ -55,9 +66,7 @@ export class GridItemComponent {
   };
 
   async readExcelFile(e: any) {
-    console.log("malakas")
-    console.log(this.gridFileSelector + " read file");
-    let gridFile = document.querySelector<HTMLElement>(this.gridFileSelector)!; //TODO: take the element name as input
+    let gridFile = document.querySelector<HTMLElement>(this.gridFileSelector)!;
     document.querySelector<HTMLElement>(this.fileInputSelector)?.setAttribute("hidden", "true");
     gridFile.removeAttribute("hidden");
     this.gridApi = this.gridApi == undefined ? createGrid(gridFile, this.gridOptionsFile) : this.gridApi;
@@ -69,9 +78,8 @@ export class GridItemComponent {
   }
 
   public clearFile() {
-    console.log("clear grid");
     this.diffs = new CompareResultCoords();
-    //this.highlightDiffs(this.diffs); //TODO: bring this back when done as last step
+    this.highlightDiffs(); //TODO: bring this back when done as last step
     this.gridApi?.redrawRows();
     let gridFile = document.querySelector<HTMLElement>(this.gridFileSelector)!;
     gridFile.setAttribute("hidden", "true");

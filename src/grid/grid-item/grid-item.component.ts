@@ -20,15 +20,13 @@ export class GridItemComponent {
     console.log('fileInputSelector' + this.fileInputSelector);
   }
   
-  @Input() 
-  fileName: string;
-  //diffs: CompareResultCoords;
+  @Input() fileName: string;
+  @Input() diffs: CompareResultCoords;
 
   gridApi: GridApi<any>;
   file: File = { content: '', readFinish: undefined, rowData: [], columns: [] };
   gridFileSelector: string = "";
   fileInputSelector: string = "";
-  diffs = new CompareResultCoords();
 
   gridOptionsFile: GridOptions<any> = {
     columnDefs: this.file.columns,

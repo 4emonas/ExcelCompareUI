@@ -1,6 +1,6 @@
 import { Injectable, OnInit } from '@angular/core';
 import * as XLSX from 'xlsx';
-import { File } from './grid.component';
+import { File }  from './entities/entities'
 import { GridApi } from 'ag-grid-community';
 
 @Injectable()

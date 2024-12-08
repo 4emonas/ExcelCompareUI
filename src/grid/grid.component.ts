@@ -122,7 +122,7 @@ export class GridComponent implements OnInit {
     };
 
     async readExcelFileA(e: any) {
-        console.log("gridFileA");
+        console.log("readExcelFileA");
         let gridFileA = document.querySelector<HTMLElement>("#myGridFileA")!;
         document.querySelector<HTMLElement>("#fileInputA")?.setAttribute("hidden", "true");
         gridFileA.removeAttribute("hidden");
@@ -135,7 +135,7 @@ export class GridComponent implements OnInit {
     }
 
     async readExcelFileB(e: any) {
-        
+        console.log("readExcelFileB");
         let gridFileB = document.querySelector<HTMLElement>("#myGridFileB")!;
         document.querySelector<HTMLElement>("#fileInputB")?.setAttribute("hidden", "true");
         gridFileB.removeAttribute("hidden");

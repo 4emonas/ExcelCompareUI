@@ -10,15 +10,25 @@ import { File, CompareResultCoords, Coords } from '../entities/entities'
   styleUrl: './grid-item.component.css'
 })
 export class GridItemComponent {
-
   ngOnInit() {
     console.log('GridItemComponent initialized');
+
+    this.gridFileSelector = "#myGridFile" + this.fileName;
+    console.log('gridFileSelector' + this.gridFileSelector);
+
+    this.fileInputSelector = "#fileInput" + this.fileName;
+    console.log('fileInputSelector' + this.fileInputSelector);
   }
   
-  @Input() diffs: CompareResultCoords;
+  @Input() 
+  fileName: string;
+  //diffs: CompareResultCoords;
 
   gridApi: GridApi<any>;
   file: File = { content: '', readFinish: undefined, rowData: [], columns: [] };
+  gridFileSelector: string = "";
+  fileInputSelector: string = "";
+  diffs = new CompareResultCoords();
 
   gridOptionsFile: GridOptions<any> = {
     columnDefs: this.file.columns,
@@ -32,7 +42,7 @@ export class GridItemComponent {
                 let i = params.rowIndex;
                 let j = this.gridApi.getAllDisplayedColumns().indexOf(params.column);
                 let coords: Coords = { x: i + 1, y: j + 1 };
-                if (this.diffs.cellsOnlyInFileA.some(t => t.x === coords.x && t.y === coords.y)) {
+                if (this.diffs.cellsOnlyInFileB.some(t => t.x === coords.x && t.y === coords.y)) {
                     return { backgroundColor: "#17a2b8" };
                 }
 
@@ -47,9 +57,10 @@ export class GridItemComponent {
   };
 
   async readExcelFile(e: any) {
-    console.log("gridFileA");
-    let gridFile = document.querySelector<HTMLElement>("#myGridFileA")!; //TODO: take the element name as input
-    document.querySelector<HTMLElement>("#fileInputA")?.setAttribute("hidden", "true");
+    console.log("malakas")
+    console.log(this.gridFileSelector + " read file");
+    let gridFile = document.querySelector<HTMLElement>(this.gridFileSelector)!; //TODO: take the element name as input
+    document.querySelector<HTMLElement>(this.fileInputSelector)?.setAttribute("hidden", "true");
     gridFile.removeAttribute("hidden");
     this.gridApi = this.gridApi == undefined ? createGrid(gridFile, this.gridOptionsFile) : this.gridApi;
     if (e.type=="change"){
@@ -64,8 +75,8 @@ export class GridItemComponent {
     this.diffs = new CompareResultCoords();
     //this.highlightDiffs(this.diffs);
     this.gridApi?.redrawRows();
-    let gridFileA = document.querySelector<HTMLElement>("#myGridFileA")!;
-    gridFileA.setAttribute("hidden", "true");
-    document.querySelector<HTMLElement>("#fileInputA")?.removeAttribute("hidden");
+    let gridFile = document.querySelector<HTMLElement>(this.gridFileSelector)!;
+    gridFile.setAttribute("hidden", "true");
+    document.querySelector<HTMLElement>(this.fileInputSelector)?.removeAttribute("hidden");
   }
 }

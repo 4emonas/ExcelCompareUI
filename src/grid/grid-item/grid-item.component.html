@@ -1,6 +1,6 @@
-<div class="fileInput" id="fileInputB">
+<div class="fileInput" id="{{'fileInput' + fileName}}">
     <label for="input-fileB" id="drop-area" ng-dragover>
-        <input type="file" id="input-fileB" (change)="readExcelFile($event)" hidden>
+        <input type="file" id="{{'input-file' + fileName}}" (change)="readExcelFile($event)" hidden>
         <div id="img-view">
             <img src="../../assets/508-icon.png">
             <p>Drag and drop first file or click here</p>
@@ -10,4 +10,4 @@
         </div>
     </label>
 </div>
-<div id="myGridFileB" class="ag-theme-alpine table" hidden></div>
+<div id="{{'myGridFile' + fileName}}" class="ag-theme-alpine table" hidden></div>

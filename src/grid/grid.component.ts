@@ -22,9 +22,6 @@ interface CompareApiResponse {
 export class GridComponent implements OnInit {
     constructor(private httpClient: HttpClient){}
     ngOnInit(): void {
-        console.log('GridComponent initialized');
-    }
-
     }
 
     @ViewChildren(GridItemComponent) GridItems: QueryList<GridItemComponent>;
@@ -34,9 +31,7 @@ export class GridComponent implements OnInit {
     fileInputs = new FileInputs();
     diffs = new CompareResultCoords();
 
-
     public compare() {
-        console.log(this.fileInputs);
         if (!this.fileInputs.fileA.readFinish || !this.fileInputs.fileB.readFinish) {
             alert('files are not fully loaded yet');
             return;

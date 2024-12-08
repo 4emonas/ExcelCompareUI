@@ -159,6 +159,7 @@ export class GridComponent implements OnInit {
         this.uploadFile(this.fileA.content, this.fileB.content);
     }
 
+    //TODO: move to ClearFile(string fileName)
     public clearFileA(){
         console.log("clear grid");
         this.diffs = new CompareResultCoords();
@@ -168,6 +169,7 @@ export class GridComponent implements OnInit {
         document.querySelector<HTMLElement>("#fileInputA")?.removeAttribute("hidden");
     }
 
+    //TODO: move to ClearFile(string fileName)
     public clearFileB(){
         this.diffs = new CompareResultCoords();
         this.highlightDiffs(this.diffs);

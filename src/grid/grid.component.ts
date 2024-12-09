@@ -1,9 +1,8 @@
 import { Component, ViewChildren, QueryList, OnInit, HostListener } from '@angular/core';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
-import { GridApi, GridOptions, createGrid, ColDef } from 'ag-grid-community';
 import { GridFileReader } from './grid.fileReader';
 import { environment } from '../environment/environment';
-import { File, CompareResultCoords, Coords, FileInputs } from './entities/entities';
+import { CompareResultCoords, Coords, FileInputs } from './entities/entities';
 import { GridItemComponent } from './grid-item/grid-item.component';
 
 interface CompareApiResponse {
@@ -19,15 +18,14 @@ interface CompareApiResponse {
     templateUrl: './grid.component.html',
     styleUrl: './grid.component.css',
 })
-export class GridComponent implements OnInit {
+export class GridComponent{
     constructor(private httpClient: HttpClient){}
-    ngOnInit(): void {
-    }
-
     @ViewChildren(GridItemComponent) GridItems: QueryList<GridItemComponent>;
 
+    //TODO: api class
     SERVER_URL = environment.api + environment.compareBaseUrl;
     CompareApi = "";
+
     fileInputs = new FileInputs();
     diffs = new CompareResultCoords();
 
@@ -38,25 +36,6 @@ export class GridComponent implements OnInit {
         }
 
         this.uploadFile(this.fileInputs.fileA.content, this.fileInputs.fileB.content);
-    }
-
-    //TODO: move to ClearFile(string fileName)
-    public clearFileA(){
-        console.log("clear grid");
-        this.diffs = new CompareResultCoords();
-        this.highlightDiffs(this.diffs);
-        let gridFileA = document.querySelector<HTMLElement>("#myGridFileA")!;
-        gridFileA.setAttribute("hidden", "true");
-        document.querySelector<HTMLElement>("#fileInputA")?.removeAttribute("hidden");
-    }
-
-    //TODO: move to ClearFile(string fileName)
-    public clearFileB(){
-        this.diffs = new CompareResultCoords();
-        this.highlightDiffs(this.diffs);
-        let gridFileA = document.querySelector<HTMLElement>("#myGridFileB")!;
-        gridFileA.setAttribute("hidden", "true");
-        document.querySelector<HTMLElement>("#fileInputB")?.removeAttribute("hidden");
     }
 
     uploadFile(fileA: string, fileB: string) {
@@ -77,6 +56,15 @@ export class GridComponent implements OnInit {
         this.GridItems.forEach(item => {
             item.highlightDiffs();
         })
+    }
+
+    public clearFile(fileName: string){
+        console.log("clear grid " + fileName);
+        this.diffs = new CompareResultCoords();
+        this.highlightDiffs(this.diffs);
+        let gridFile = document.querySelector<HTMLElement>("#myGridFile" + fileName)!;
+        gridFile.setAttribute("hidden", "true");
+        document.querySelector<HTMLElement>("#fileInput" + fileName)?.removeAttribute("hidden");
     }
 
     parseApiResponse(apiResponse: CompareApiResponse, diffs: CompareResultCoords) {

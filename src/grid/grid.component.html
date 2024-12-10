@@ -8,46 +8,22 @@
             </div>
             <div class="row grid-buttons">
                 <div class="grid-button text-md-center">
-                    <button type="button" class="btn btn-info btn-lg" (click)="clearFileA()">Clear file</button>
+                    <button type="button" class="btn btn-info btn-lg" (click)="clearFile('A')">Clear file</button>
                 </div>
                 <div class="grid-button text-md-center">
                     <button type="button" class="btn btn-secondary active btn-lg" (click)="compare()">Compare</button>
                 </div>
                 <div class="grid-button text-md-center">
-                    <button type="button" class="btn btn-success btn-lg" (click)="clearFileB()">Clear file</button>
+                    <button type="button" class="btn btn-success btn-lg" (click)="clearFile('B')">Clear file</button>
                 </div>
             </div>
         </div>
         <div class="row grids">
             <div class="col-6">
-                <div class="fileInput" id="fileInputA">
-                    <label for="input-fileA" id="drop-area" ng-dragover>
-                        <input type="file" id="input-fileA" (change)="readExcelFileA($event)" hidden>
-                        <div id="img-view">
-                            <img src="../assets/508-icon.png">
-                            <p>Drag and drop first file or click here</p>
-                            <div class="spinner-border fileA" role="status" *ngIf="fileA.readFinish==false">
-                                <span class="sr-only">Loading...</span>
-                            </div>
-                        </div>
-                    </label>
-                </div>
-                <div id="myGridFileA" class="ag-theme-alpine table" hidden></div>
+                <app-grid-item [fileName]="'A'" [fileInputs]="fileInputs" [diffs]="diffs"></app-grid-item>
             </div>
             <div class="col-6">
-                <div class="fileInput" id="fileInputB">
-                    <label for="input-fileB" id="drop-area">
-                        <input type="file" id="input-fileB" (change)="readExcelFileB($event)" hidden>
-                        <div id="img-view">
-                            <img src="../assets/508-icon.png">
-                            <p>Drag and drop second file or click here</p>
-                            <div class="spinner-border fileB" role="status" *ngIf="fileB.readFinish==false">
-                                <span class="sr-only">Loading...</span>
-                            </div>
-                        </div>
-                    </label>
-                </div>
-                <div id="myGridFileB" class="ag-theme-alpine table" hidden></div>
+                <app-grid-item [fileName]="'B'" [fileInputs]="fileInputs" [diffs]="diffs"></app-grid-item>
             </div>
         </div>
     </div>

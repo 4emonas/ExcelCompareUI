@@ -55,7 +55,7 @@ export class GridItemComponent {
 
           if (this.diffs.cellsWithDifferentValues.some(t => t.x === coords.x && t.y === coords.y)) {
             return { backgroundColor: colourDifferenceDictionary['differences'] }
-          }differences
+          }
 
           return;
         }

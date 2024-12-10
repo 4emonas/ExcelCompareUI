@@ -25,5 +25,6 @@ export class FileInputs {
 
 export const colourDifferenceDictionary = {
     'A': '#17a2b8',
-    'B': '#28a746'
+    'B': '#28a746',
+    'differences': '#ffc107'
 };

@@ -1,8 +1,7 @@
 import { Component, Input, HostListener } from '@angular/core';
-import { GridApi, GridOptions, createGrid, ColDef } from 'ag-grid-community';
+import { GridApi, GridOptions, createGrid } from 'ag-grid-community';
 import { GridFileReader } from '../grid.fileReader';
 import { File, CompareResultCoords, Coords, FileInputs, colourDifferenceDictionary } from '../entities/entities'
-
 
 @Component({
   selector: 'app-grid-item',
@@ -10,7 +9,6 @@ import { File, CompareResultCoords, Coords, FileInputs, colourDifferenceDictiona
   styleUrl: './grid-item.component.css'
 })
 export class GridItemComponent {
-
   ngOnInit() {
     this.gridFileSelector = "#myGridFile" + this.fileName;
     this.fileInputSelector = "#fileInput" + this.fileName;
@@ -56,8 +54,8 @@ export class GridItemComponent {
           }
 
           if (this.diffs.cellsWithDifferentValues.some(t => t.x === coords.x && t.y === coords.y)) {
-            return { backgroundColor: "#ffc107" }
-          }
+            return { backgroundColor: colourDifferenceDictionary['differences'] }
+          }differences
 
           return;
         }
@@ -75,15 +73,6 @@ export class GridItemComponent {
     } else {
       GridFileReader.readExcelFile(e[0], this.file, this.gridApi);
     }
-  }
-
-  public clearFile() {
-    this.diffs = new CompareResultCoords();
-    this.highlightDiffs(); //TODO: bring this back when done as last step
-    this.gridApi?.redrawRows();
-    let gridFile = document.querySelector<HTMLElement>(this.gridFileSelector)!;
-    gridFile.setAttribute("hidden", "true");
-    document.querySelector<HTMLElement>(this.fileInputSelector)?.removeAttribute("hidden");
   }
 
   public highlightDiffs() {
